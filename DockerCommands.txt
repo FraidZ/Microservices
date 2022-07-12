@@ -1,0 +1,73 @@
+// создать image через Docker Engine
+docker build -t fraidzzz/platformservice . (- точка в конце указывает на локальный dockerFile в папке)
+
+// Запустить контейнер на основании построенного Image
+docker run -p 8080:80 -d fraidzzz/platformservice  (8080 внешний порт, 80 внутренний)
+
+Если выполнить docker run снова, он создать новый контейнер. Это не перезапуск.
+
+// Рестар контейнера
+docker start <container Id>
+//просмотреть запущенные контейнеры
+docker ps 
+
+// Остановка
+docker stop <container Id>
+
+// запушить в docker hub репозиторий
+docker push fraidzzz/platformservice (создать репозиторий platformservice)
+docker push <docker hub id>/platformservice
+
+//
+
+
+
+
+
+Kubernetes оркестрирует контейнеры, однако контейнеры используют докер и отображаются там
+
+// K8s (Docker desktop)
+Inside Cluster (Several clusters)
+Insidde Node (Nodes)
+Inside Pod -> host and run container (Single Pod can run multiple containers)
+
+Node Port необходим для доступа извне 
+ 
+ //кластеры
+kubectl config get-contexts
+
+// Поменять контекст
+kubectl congig use-context <cluster_name>
+
+// создать deployment процесс который создаст Pod и контейнер внутри!
+kubectl apply -f platforms-depl.yaml
+
+// Получить запущенные процессы
+kubectl get deployments
+
+// Поды
+kubectl get pods
+
+// Удаляя деплоймент,к команда удаляет контейнер и его под
+kubectl delete deployment platforms-depl
+
+//посмотреть нэймспйэсы k8s. Ingress Nginx создается в отдельном нэймспесе
+kubectl get namespace
+
+// поды внутри нэймспейса
+kubectl get pods --namespace=ingress-nginx
+
+// сервисы
+kubectl get services --namespace=ingress-nginx
+
+// 
+kubectl get storageclass
+
+// Удаление деплоймента
+//kubectl delete deployment platforms-depl
+
+Your url should be like below and add sql sqljdbc42.jar. This will resolve your issue
+
+url = "jdbc:sqlserver://" +serverName + ":1433;DatabaseName=" + dbName + ";encrypt=true;trustServerCertificate=true;
+
+
