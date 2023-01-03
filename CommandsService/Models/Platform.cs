@@ -12,7 +12,7 @@ namespace CommandsService.Models
         public int ExternalId { get; set; }
         [Required]
         public string Name { get; set; }
-
+s
         public ICollection<Command> Commands { get; set; } = new List<Command>();
     }
 }
